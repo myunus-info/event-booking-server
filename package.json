@@ -1,0 +1,26 @@
+{
+  "name": "booking-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "set NODE_ENV=development&& nodemon server.js",
+    "start:prod": "set NODE_ENV=production&& nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mohammad Yunus",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.4.0",
+    "multer": "^1.4.5-lts.1",
+    "sharp": "^0.30.6",
+    "uuid": "^8.3.2",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0"
+  }
+}
