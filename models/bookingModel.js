@@ -23,23 +23,14 @@ const bookingSchema = new mongoose.Schema({
   },
 
   age: {
-    type: Number,
+    type: String,
     required: [true, 'Age is required!'],
   },
 
   event: {
-    eventName: {
-      type: String,
-      required: [true, 'Event name is required!'],
-    },
-    hostName: {
-      type: String,
-      required: [true, 'Host name is required!'],
-    },
-    dateTime: {
-      type: Date,
-      required: [true, 'Date and Time is required!'],
-    },
+    eventName: String,
+    hostName: String,
+    dateTime: String,
   },
 });
 

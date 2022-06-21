@@ -21,6 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // Routes (app mounts)
 app.use('/api', eventRoutes);
+app.use('/api', bookingRoutes);
 
 // Routing errors
 app.all('*', (req, res, next) => {

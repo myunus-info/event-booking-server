@@ -11,11 +11,12 @@ const eventController = require('../controllers/eventController');
 // );
 
 // router.get('/events', eventController.getEvents);
-router.get('/event/:eventId', eventController.getEventById);
 
 router
   .route('/events')
   .get(eventController.getEvents)
   .post(eventController.uploadEventPhoto, eventController.resizeEventPhoto, eventController.createEvent);
+
+router.get('/event/:eventId', eventController.getEventById);
 
 module.exports = router;
