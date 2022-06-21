@@ -36,6 +36,7 @@ exports.resizeEventPhoto = catchAsync(async (req, res, next) => {
 // Create event functionality
 exports.createEvent = catchAsync(async (req, res, next) => {
   if (req.file) req.body.photo = req.file.filename;
+
   const { eventName, hostName, house, city, district, division, dateTime, photo, description } =
     req.body;
 
@@ -58,5 +59,37 @@ exports.createEvent = catchAsync(async (req, res, next) => {
   res.status(201).json({
     status: 'success',
     message: 'Event created successfully!',
+  });
+});
+
+// Get all events
+exports.getEvents = catchAsync(async (req, res, next) => {
+  const events = await Event.find();
+
+  if (!events.length) {
+    return next(new AppError('No events found. Please try again later!'));
+  }
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      events,
+    },
+  });
+});
+
+// Get an Event by Id
+exports.getEventById = catchAsync(async (req, res, next) => {
+  const event = await Event.findById(req.params.eventId);
+
+  if (!event) {
+    return next(new AppError('No event found with that Id!'));
+  }
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      event,
+    },
   });
 });
