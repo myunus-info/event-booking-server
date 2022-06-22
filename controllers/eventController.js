@@ -64,7 +64,11 @@ exports.createEvent = catchAsync(async (req, res, next) => {
 
 // Get all events
 exports.getEvents = catchAsync(async (req, res, next) => {
-  const events = await Event.find();
+  let query;
+  if (req.query.query) {
+    query = { slug: req.query.query };
+  }
+  const events = await Event.find(query);
 
   if (!events.length) {
     return next(new AppError('No events found. Please try again later!'));
@@ -84,6 +88,23 @@ exports.getEventById = catchAsync(async (req, res, next) => {
 
   if (!event) {
     return next(new AppError('No event found with that Id!'));
+  }
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      event,
+    },
+  });
+});
+
+// Get an event by eventName
+exports.getEventByName = catchAsync(async (req, res, next) => {
+  console.log(req.params.slug);
+  const event = await Event.findOne({ slug: req.params.slug });
+
+  if (!event) {
+    return next(new AppError('No event found with that name', 404));
   }
 
   res.status(200).json({
