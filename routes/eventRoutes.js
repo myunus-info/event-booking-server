@@ -8,8 +8,6 @@ router
   .get(eventController.getEvents)
   .post(eventController.uploadEventPhoto, eventController.resizeEventPhoto, eventController.createEvent);
 
-// router.get('/event/:slug', eventController.getEventByName);
-
 router.get('/event/:eventId', eventController.getEventById);
 
 module.exports = router;
