@@ -65,8 +65,8 @@ exports.createEvent = catchAsync(async (req, res, next) => {
 // Get all events OR Search by name
 exports.getEvents = catchAsync(async (req, res, next) => {
   let query;
-  if (req.query.query) {
-    query = { slug: req.query.query };
+  if (req.query.eventName) {
+    query = { slug: req.query.eventName };
   }
   const events = await Event.find(query);
 
